@@ -15,11 +15,10 @@ public class SupplierResourceImpl extends BaseResourceImpl<SupplierDTO> implemen
 
     @Override
     public SupplierResult getAll(Integer page) {
-        return getWebResource().path("/" + page + "/" + 20).get(SupplierResult.class);
+        return getWebResource().path("/" + page).get(SupplierResult.class);
     }
 
     @Override
-    public SupplierResult getSuppliers() {
-        return getWebResource().path("/" + 1 + "/" + 200).get(SupplierResult.class);
+    public SupplierResult getSuppliers() { return getWebResource().path("/" ).get(SupplierResult.class);
     }
 }

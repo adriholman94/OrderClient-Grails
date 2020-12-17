@@ -9,13 +9,20 @@ class SuppliersController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond suppliersService.list(params), model:[suppliersCount: suppliersService.count()]
+
+    def index() {
+        redirect(action: "list", params: params)
     }
 
-    def show(Long id) {
-        respond suppliersService.get(id)
+    def list(Integer max){
+        def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
+        def suppliers = supplierService.getAll(page)
+        [supplierInstanceList: suppliers, supplierInstanceTotal: suppliers.size()]
+    }
+
+    def show(Integer id) {
+        def supplierInstance = supplierService.getById(id)
+        [supplierInstance: supplierInstance]
     }
 
     def create() {
@@ -44,7 +51,7 @@ class SuppliersController {
         }
     }
 
-    def edit(Long id) {
+    def edit(Integer id) {
         respond suppliersService.get(id)
     }
 
