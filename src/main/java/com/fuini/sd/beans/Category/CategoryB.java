@@ -2,6 +2,30 @@ package com.fuini.sd.beans.Category;
 
 import com.fuini.sd.beans.Base.BaseBean;
 
+import java.util.Map;
+
 public class CategoryB extends BaseBean {
-    
+    private static final long serialVersionUID = 1L;
+
+    private String categoryName;
+
+    public CategoryB(Map<String, String> params){
+        super(params);
+    }
+
+    public void setCategoryName(String categoryName){
+        this.categoryName = categoryName;
+    }
+
+    public String getCategoryName(){
+        return this.categoryName;
+    }
+
+    @Override
+    protected void create(Map<String, String> params) {
+        if (params.containsKey("id")) {
+            setId(Integer.valueOf(params.get("id")));
+        }
+        setCategoryName(params.get("categoryName"));
+    }
 }
