@@ -21,11 +21,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
 
     @Override
     protected CategoryB convertDtoToBean(CategoryDTO dto) {
-        final Map<String, String> params = new HashMap<String, String>();
+        final Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(dto.getId()));
         params.put("categoryName", dto.getCategoryName());
-        final CategoryB c = new CategoryB(params);
-        return c;
+        return new CategoryB(params);
     }
 
     @Override
@@ -45,8 +44,8 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     @Override
     public List<CategoryB> getAll(Integer page) {
         final CategoryResult result = categoryResource.getAll(page);
-        final List<CategoryDTO> dto = null == result.getCategories() ? new ArrayList<CategoryDTO>() : result.getCategories();
-        final List<CategoryB> categories = new ArrayList<CategoryB>();
+        final List<CategoryDTO> dto = null == result.getCategories() ? new ArrayList<>() : result.getCategories();
+        final List<CategoryB> categories = new ArrayList<>();
         dto.forEach(c -> categories.add(convertDtoToBean(c)));
         return categories;
     }

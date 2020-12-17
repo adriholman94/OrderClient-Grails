@@ -20,11 +20,10 @@ public class SupplierServiceImpl extends BaseServiceImpl<SupplierB, SupplierDTO>
 
     @Override
     protected SupplierB convertDtoToBean(SupplierDTO dto) {
-        final Map<String, String> params = new HashMap<String, String>();
+        final Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(dto.getId()));
         params.put("supplierName", dto.getSupplierName());
-        final SupplierB c = new SupplierB(params);
-        return c;
+        return new SupplierB(params);
     }
 
     @Override
@@ -38,14 +37,14 @@ public class SupplierServiceImpl extends BaseServiceImpl<SupplierB, SupplierDTO>
     @Override
     public SupplierB getById(Integer id) {
         final SupplierDTO supplierDTO = supplierResource.getById(id);
-        return convertDtoToBean(SupplierDTO);
+        return convertDtoToBean(supplierDTO);
     }
 
     @Override
     public List<SupplierB> getAll(Integer page) {
         final SupplierResult result = supplierResource.getAll(page);
-        final List<SupplierDTO> dto = null == result.getSuppliers() ? new ArrayList<SupplierDTO>() : result.getSuppliers();
-        final List<SupplierB> suppliers = new ArrayList<SupplierB>();
+        final List<SupplierDTO> dto = null == result.getSuppliers() ? new ArrayList<>() : result.getSuppliers();
+        final List<SupplierB> suppliers = new ArrayList<>();
         dto.forEach(c -> suppliers.add(convertDtoToBean(c)));
         return suppliers;
     }
