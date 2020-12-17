@@ -1,10 +1,9 @@
-package com.fuini.sd.rest.Supplier
+package com.fuini.sd.web.rest.Supplier
 
-import com.fiuni.sd.DTO.Category.CategoryDTO
-import com.fiuni.sd.DTO.Category.CategoryResult
+
 import com.fiuni.sd.DTO.Supplier.SupplierDTO
 import com.fiuni.sd.DTO.Supplier.SupplierResult
-import com.fuini.sd.rest.Base.IBaseResource
+import com.fuini.sd.web.rest.Base.IBaseResource
 
 
 public interface ISupplierResource extends IBaseResource<SupplierDTO> {

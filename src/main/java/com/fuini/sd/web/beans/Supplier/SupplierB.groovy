@@ -1,6 +1,7 @@
-package com.fuini.sd.beans.Supplier
+package com.fuini.sd.web.beans.Supplier
 
-import com.fuini.sd.beans.Base.BaseBean
+
+import com.fuini.sd.web.beans.Base.BaseBean
 
 class SupplierB extends BaseBean {
     private static final long serialVersionUID = 1L;

@@ -1,9 +1,9 @@
-package com.fuini.sd.rest.Supplier
+package com.fuini.sd.web.rest.Supplier
 
 
 import com.fiuni.sd.DTO.Supplier.SupplierDTO
 import com.fiuni.sd.DTO.Supplier.SupplierResult
-import com.fuini.sd.rest.Base.BaseResourceImpl
+import com.fuini.sd.web.rest.Base.BaseResourceImpl
 
 import org.springframework.stereotype.Repository
 

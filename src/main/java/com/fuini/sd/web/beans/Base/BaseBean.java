@@ -1,4 +1,4 @@
-package com.fuini.sd.beans.Base;
+package com.fuini.sd.web.beans.Base;
 
 import java.io.Serializable;
 import java.util.Map;

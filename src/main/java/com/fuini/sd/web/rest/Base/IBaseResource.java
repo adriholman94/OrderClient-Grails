@@ -1,4 +1,4 @@
-package com.fuini.sd.rest.Base;
+package com.fuini.sd.web.rest.Base;
 
 import com.fiuni.sd.DTO.Base.BaseDTO;
 

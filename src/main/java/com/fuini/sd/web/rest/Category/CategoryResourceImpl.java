@@ -1,8 +1,8 @@
-package com.fuini.sd.rest.Category;
+package com.fuini.sd.web.rest.Category;
 
 import com.fiuni.sd.DTO.Category.CategoryDTO;
 import com.fiuni.sd.DTO.Category.CategoryResult;
-import com.fuini.sd.rest.Base.BaseResourceImpl;
+import com.fuini.sd.web.rest.Base.BaseResourceImpl;
 import org.springframework.stereotype.Repository;
 
 @Repository("categoryResource")

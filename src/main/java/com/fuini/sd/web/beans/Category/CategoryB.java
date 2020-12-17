@@ -1,6 +1,6 @@
-package com.fuini.sd.beans.Category;
+package com.fuini.sd.web.beans.Category;
 
-import com.fuini.sd.beans.Base.BaseBean;
+import com.fuini.sd.web.beans.Base.BaseBean;
 
 import java.util.Map;
 

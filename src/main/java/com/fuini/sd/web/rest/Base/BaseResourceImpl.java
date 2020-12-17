@@ -1,4 +1,4 @@
-package com.fuini.sd.rest.Base;
+package com.fuini.sd.web.rest.Base;
 
 import com.fiuni.sd.DTO.Base.BaseDTO;
 import com.sun.jersey.api.client.Client;
@@ -21,15 +21,18 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
     }
 
     protected WebResource getWebResource(){
+
         return this.webResource;
     }
 
     protected Class<DTO> getDTOClass(){
+
         return  dtoClass;
     }
 
     @Override
     public DTO getById(Integer id) {
+
         return getWebResource().path("/" + id).get(getDTOClass());
     }
 
