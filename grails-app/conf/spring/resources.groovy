@@ -7,13 +7,8 @@ import com.fuini.sd.web.service.Supplier.SupplierServiceImpl
 beans = {
     //Resources
     categoryResource(CategoryResourceImpl)
-
+    supplierResource(SupplierResourceImpl)
     //Services
     categoryService(CategoryServiceImpl)
-
-    //Resources
-    supplierResource(SupplierResourceImpl)
-
-    //Services
     supplierService(SupplierServiceImpl)
 }
