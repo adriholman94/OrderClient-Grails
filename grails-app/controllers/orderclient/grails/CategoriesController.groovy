@@ -1,25 +1,32 @@
 package orderclient.grails
 
+import com.fuini.sd.web.service.Category.ICategoryService
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 class CategoriesController {
 
-    CategoriesService categoriesService
+    def ICategoryService categoryService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond categoriesService.list(params), model:[categoriesCount: categoriesService.count()]
+    def index() {
+        redirect(action: "list", params: params)
     }
 
-    def show(Long id) {
-        respond categoriesService.get(id)
+    def list(Integer max){
+        def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
+        def categories = categoryService.getAll(page)
+        [categoryInstanceList: categories, categoryInstanceTotal: categories.size()]
+    }
+
+    def show(Integer id) {
+        def categoryInstance = categoryService.getById(id)
+        [categoryInstance: categoryInstance]
     }
 
     def create() {
-        respond new Categories(params)
+        [categoryInstance: new Categories(params)]
     }
 
     def save(Categories categories) {
@@ -44,7 +51,7 @@ class CategoriesController {
         }
     }
 
-    def edit(Long id) {
+    def edit(Integer id) {
         respond categoriesService.get(id)
     }
 

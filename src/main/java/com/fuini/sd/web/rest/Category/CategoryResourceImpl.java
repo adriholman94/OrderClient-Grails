@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("categoryResource")
 public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implements ICategoryResource{
+
     public CategoryResourceImpl() {
         super(CategoryDTO.class, "categories");
     }

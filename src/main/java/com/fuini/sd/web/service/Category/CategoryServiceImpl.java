@@ -6,9 +6,14 @@ import com.fuini.sd.web.beans.Category.CategoryB;
 import com.fuini.sd.web.rest.Category.ICategoryResource;
 import com.fuini.sd.web.service.Base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+@Service("categoryService")
 public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO> implements ICategoryService {
 
     @Autowired
