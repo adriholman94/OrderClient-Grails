@@ -13,7 +13,7 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
 
     public BaseResourceImpl(Class<DTO> dtoClass, String resourcePath){
         this.dtoClass = dtoClass;
-        this.resourcePath = resourcePath;
+        this.resourcePath = BASE_URL + resourcePath;
 
         final Client jerseyClient = Client.create();
 
