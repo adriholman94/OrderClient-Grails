@@ -13,11 +13,11 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
 
     @Override
     public CategoryResult getAll(Integer page) {
-        return getWebResource().path("/" + page + "/" + 20).get(CategoryResult.class);
+        return getWebResource().path("/" + page).get(CategoryResult.class);
     }
 
     @Override
     public CategoryResult getCategories() {
-        return getWebResource().path("/" + 1 + "/" + 200).get(CategoryResult.class);
+        return getWebResource().path("/").get(CategoryResult.class);
     }
 }
