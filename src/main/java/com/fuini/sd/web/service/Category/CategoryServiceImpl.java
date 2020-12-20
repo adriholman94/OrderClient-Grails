@@ -19,6 +19,8 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     @Autowired
     private ICategoryResource categoryResource;
 
+    private Integer pages;
+
     @Override
     protected CategoryB convertDtoToBean(CategoryDTO dto) {
         final Map<String, String> params = new HashMap<>();
@@ -45,6 +47,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     public List<CategoryB> getAll(Integer page) {
         final CategoryResult result = categoryResource.getAll(page);
         final List<CategoryDTO> dto = null == result.getCategories() ? new ArrayList<>() : result.getCategories();
+        setCPages(result.getPages());
         final List<CategoryB> categories = new ArrayList<>();
         dto.forEach(c -> categories.add(convertDtoToBean(c)));
         return categories;
@@ -60,5 +63,14 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     public CategoryB update(CategoryB updateBean) {
         final CategoryDTO dto = convertBeanToDto(updateBean);
         return convertDtoToBean(categoryResource.update(dto));
+    }
+
+    @Override
+    public Integer getCPages() {
+        return pages;
+    }
+
+    public void setCPages(Integer pages) {
+        this.pages = pages;
     }
 }

@@ -14,12 +14,8 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
 
     @Override
     public CategoryResult getAll(Integer page) {
+        System.out.println(getWebResource().path("/page/" + page).toString());
         return getWebResource().path("/page/" + page).get(CategoryResult.class);
-    }
-
-    @Override
-    public CategoryResult getCategories() {
-        return getWebResource().path("/").get(CategoryResult.class);
     }
 
     @Override

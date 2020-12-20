@@ -2,8 +2,6 @@ package orderclient.grails
 
 import com.fuini.sd.web.beans.Category.CategoryB
 import com.fuini.sd.web.service.Category.ICategoryService
-import grails.validation.ValidationException
-import static org.springframework.http.HttpStatus.*
 
 class CategoriesController {
 
@@ -12,14 +10,15 @@ class CategoriesController {
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index() {
-
+        redirect(action: "list", params: params)
     }
 
     def list(Integer max){
         System.out.println("params ==== " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
         def categories = categoryService.getAll(page)
-        [categoryInstanceList: categories, categoryInstanceTotal: categories.size()]
+        def next = categories.size() == 0 ? 0 : (categoryService.getCPages() == page + 1 ? 0 : 1)
+        [categoryInstanceL: categories, categoryInstanceT: categories?.size(), page: page, next: next]
     }
 
     def show(Integer id) {

@@ -7,4 +7,6 @@ import com.fuini.sd.web.service.Base.IBaseService;
 public interface ICategoryService extends IBaseService<CategoryB, CategoryDTO> {
 
     CategoryB update(CategoryB updateBean);
+
+    Integer getCPages();
 }
