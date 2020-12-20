@@ -55,4 +55,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
         final CategoryDTO dto = convertBeanToDto(bean);
         return convertDtoToBean(categoryResource.save(dto));
     }
+
+    @Override
+    public CategoryB update(CategoryB updateBean) {
+        final CategoryDTO dto = convertBeanToDto(updateBean);
+        return convertDtoToBean(categoryResource.update(dto));
+    }
 }

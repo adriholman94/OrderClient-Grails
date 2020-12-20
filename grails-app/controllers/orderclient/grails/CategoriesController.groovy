@@ -1,5 +1,6 @@
 package orderclient.grails
 
+import com.fuini.sd.web.beans.Category.CategoryB
 import com.fuini.sd.web.service.Category.ICategoryService
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
@@ -8,77 +9,65 @@ class CategoriesController {
 
     def ICategoryService categoryService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index() {
-        redirect(action: "list", params: params)
+
     }
 
     def list(Integer max){
+        System.out.println("params ==== " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
         def categories = categoryService.getAll(page)
         [categoryInstanceList: categories, categoryInstanceTotal: categories.size()]
     }
 
     def show(Integer id) {
+        System.out.println("params ==== " + params)
         def categoryInstance = categoryService.getById(id)
         [categoryInstance: categoryInstance]
     }
 
     def create() {
+        System.out.println("params ==== " + params)
         [categoryInstance: new Categories(params)]
     }
 
-    def save(Categories categories) {
-        if (categories == null) {
-            notFound()
+    def save() {
+        System.out.println("params ==== " + params)
+        def categoryInstance = new CategoryB(params)
+        def newCategoryInstance = categoryService.save(categoryInstance)
+        if (!newCategoryInstance?.getId()) {
+            render(view: "create", model: [categoryInstance: categoryInstance])
             return
         }
 
-        try {
-            categoriesService.save(categories)
-        } catch (ValidationException e) {
-            respond categories.errors, view:'create'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'categories.label', default: 'Categories'), categories.id])
-                redirect categories
-            }
-            '*' { respond categories, [status: CREATED] }
-        }
+        flash.message = message(code: 'default.created.message', args: [message(code: 'categories.label', default: 'Categories'), newCategoryInstance.getId()])
+        redirect(action: "show", id: newCategoryInstance.getId())
     }
 
-    def edit(Integer id) {
-        respond categoriesService.get(id)
+    def edit(Long id) {
+        def categoryInstance = categoryService.getById(id.intValue())
+        if (!categoryInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'categories.label', default: 'Categories'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [categoryInstance: categoryInstance]
     }
 
-    def update(Categories categories) {
-        if (categories == null) {
-            notFound()
-            return
-        }
-
-        try {
-            categoriesService.save(categories)
-        } catch (ValidationException e) {
-            respond categories.errors, view:'edit'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'categories.label', default: 'Categories'), categories.id])
-                redirect categories
-            }
-            '*'{ respond categories, [status: OK] }
-        }
+    def update() {
+        System.out.println("params ==== " + params)
+        def newCategoryInstance = new CategoryB(params)
+        newCategoryInstance.setId(Integer.parseInt(params.get("edit")))
+        newCategoryInstance.setCategoryName(params.get("categoryName"))
+        categoryService.update(newCategoryInstance)
+        redirect(action: "show", id: newCategoryInstance.getId())
     }
 
     def delete(Long id) {
-        if (id == null) {
+    /*    if (id == null) {
             notFound()
             return
         }
@@ -92,15 +81,6 @@ class CategoriesController {
             }
             '*'{ render status: NO_CONTENT }
         }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'categories.label', default: 'Categories'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
+        */
     }
 }

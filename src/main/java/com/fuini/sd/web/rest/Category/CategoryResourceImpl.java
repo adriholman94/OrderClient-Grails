@@ -14,11 +14,18 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
 
     @Override
     public CategoryResult getAll(Integer page) {
-        return getWebResource().path("/" + page).get(CategoryResult.class);
+        return getWebResource().path("/page/" + page).get(CategoryResult.class);
     }
 
     @Override
     public CategoryResult getCategories() {
         return getWebResource().path("/").get(CategoryResult.class);
+    }
+
+    @Override
+    public CategoryDTO update(CategoryDTO categoryDTO) {
+        System.out.println(getWebResource().path("/" + categoryDTO.getId()).toString());
+        CategoryDTO updateDTO = getWebResource().path("/" + categoryDTO.getId()).entity(categoryDTO).put(getDTOClass());
+        return updateDTO;
     }
 }

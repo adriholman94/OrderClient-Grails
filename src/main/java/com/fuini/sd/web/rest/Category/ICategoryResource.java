@@ -9,4 +9,6 @@ public interface ICategoryResource extends IBaseResource<CategoryDTO> {
     CategoryResult getAll(Integer page);
 
     CategoryResult getCategories();
+
+    CategoryDTO update(CategoryDTO categoryDTO);
 }
