@@ -73,4 +73,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     public void setCPages(Integer pages) {
         this.pages = pages;
     }
+
+    @Override
+    public CategoryB delete(Integer id) {
+        CategoryDTO dto = categoryResource.delete(id);
+        return dto.getId() == null ? null : convertDtoToBean(dto);
+    }
 }

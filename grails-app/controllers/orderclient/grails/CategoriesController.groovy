@@ -62,24 +62,27 @@ class CategoriesController {
         newCategoryInstance.setId(Integer.parseInt(params.get("edit")))
         newCategoryInstance.setCategoryName(params.get("categoryName"))
         categoryService.update(newCategoryInstance)
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'categories.label', default: 'Categories'), newCategoryInstance.getId()])
         redirect(action: "show", id: newCategoryInstance.getId())
     }
 
     def delete(Long id) {
-    /*    if (id == null) {
-            notFound()
+        def categoryInstance = categoryService.delete(id)
+        if (!categoryInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [
+                    message(code: 'categories.label', default: 'Categories'),
+                    id
+            ])
+            redirect(action: "list")
+            return
+        }else {
+            flash.message = message(code: 'default.deleted.message', args: [
+                    message(code: 'categories.label', default: 'Categories'),
+                    id
+            ])
+            redirect(action: "list")
             return
         }
-
-        categoriesService.delete(id)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'categories.label', default: 'Categories'), id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-        */
     }
 }

@@ -24,4 +24,9 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
         CategoryDTO updateDTO = getWebResource().path("/" + categoryDTO.getId()).entity(categoryDTO).put(getDTOClass());
         return updateDTO;
     }
+
+    @Override
+    public CategoryDTO delete(Integer id) {
+        return getWebResource().path("/" + id).delete(getDTOClass());
+    }
 }
