@@ -40,7 +40,6 @@ class CategoriesController {
             render(view: "create", model: [categoryInstance: categoryInstance])
             return
         }
-
         flash.message = message(code: 'default.created.message', args: [message(code: 'categories.label', default: 'Categories'), newCategoryInstance.getId()])
         redirect(action: "show", id: newCategoryInstance.getId())
     }
@@ -52,7 +51,6 @@ class CategoriesController {
             redirect(action: "list")
             return
         }
-
         [categoryInstance: categoryInstance]
     }
 

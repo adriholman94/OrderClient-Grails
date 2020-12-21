@@ -28,7 +28,7 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
 
     @Override
     public DTO getById(Integer id) {
-        System.out.println(getWebResource().path("/" + id).toString());
+        System.out.println("get -> " + getWebResource().path("/" + id).toString());
         return getWebResource().path("/" + id).get(getDTOClass());
     }
 

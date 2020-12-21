@@ -29,8 +29,8 @@
         <label id="firstName-label" class="property-label">Category Name:</label>
         <div class="property-value" aria-labelledby="firstName-label">${fieldValue(bean: categoryInstance, field: "categoryName")}</div>
     </li>
-    </ol>
-    <g:form resource="${categoryInstance?.id}" method="DELETE">
+    </ol>categoryInstance
+    <g:form method="DELETE">
         <fieldset class="buttons">
             <g:hiddenField name="id" value="${categoryInstance?.id}" />
             <g:link class="btn btn-outline-secondary btn-sm" action="edit" id="${categoryInstance?.id}">
