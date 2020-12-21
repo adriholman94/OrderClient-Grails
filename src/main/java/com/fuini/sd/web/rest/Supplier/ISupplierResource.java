@@ -8,5 +8,7 @@ public interface ISupplierResource extends IBaseResource<SupplierDTO> {
 
     SupplierResult getAll(Integer page);
 
-    SupplierResult getSuppliers();
+    SupplierDTO update(SupplierDTO supplierDTO);
+
+    SupplierDTO delete(Integer id);
 }

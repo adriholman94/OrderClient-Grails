@@ -14,27 +14,29 @@
                 <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
             </ul>
         </div>
+
         <div id="edit-suppliers" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:hasErrors bean="${this.suppliers}">
+            <g:hasErrors bean="${suppliersInstance}">
             <ul class="errors" role="alert">
-                <g:eachError bean="${this.suppliers}" var="error">
+                <g:eachError bean="${suppliersInstance}" var="error">
                 <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.suppliers}" method="PUT">
-                <g:hiddenField name="version" value="${this.suppliers?.version}" />
-                <fieldset class="form">
-                    <f:all bean="suppliers"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-            </g:form>
-        </div>
-    </body>
-</html>
+       <g:form action="update">
+               <fieldset class="form">
+                   <g:render template="form"/>
+               </fieldset>
+               <fieldset class="buttons">
+                   <button type="submit" class="btn btn-outline-secondary btn-sm" name="edit" value="${supplierInstance?.id}">
+                       Update
+                   </button>
+               </fieldset>
+           </g:form>
+       </div>
+       </body>
+       </html>

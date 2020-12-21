@@ -5,15 +5,19 @@ import com.fuini.sd.web.beans.Base.BaseBean;
 import java.util.Map;
 
 public class SupplierB extends BaseBean {
-    public SupplierB(Map<String, String> params) {
+    private static final long serialVersionUID = 1L;
+
+    private String supplierName;
+
+    public SupplierB(Map<String, String> params){
         super(params);
     }
 
-    public void setSupplierName(String supplierName) {
+    public void setSupplierName(String supplierName){
         this.supplierName = supplierName;
     }
 
-    public String getSupplierName() {
+    public String getSupplierName(){
         return this.supplierName;
     }
 
@@ -22,10 +26,6 @@ public class SupplierB extends BaseBean {
         if (params.containsKey("id")) {
             setId(Integer.valueOf(params.get("id")));
         }
-
         setSupplierName(params.get("supplierName"));
     }
-
-    private static final long serialVersionUID = 1L;
-    private String supplierName;
 }
