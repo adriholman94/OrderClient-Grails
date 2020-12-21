@@ -37,10 +37,10 @@
         </tr>
         </thead>
         <tbody>
-        <g:each in="${categoryInstanceL}" status="i" var="cityInstance">
+        <g:each in="${categoryInstanceL}" status="i" var="categoryInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                <td><g:link action="show" id="${cityInstance.id}">
-                    ${fieldValue(bean: cityInstance, field: "categoryName")}
+                <td><g:link action="show" id="${categoryInstance.id}">
+                    ${fieldValue(bean: categoryInstance, field: "categoryName")}
                 </g:link></td>
             </tr>
         </g:each>
