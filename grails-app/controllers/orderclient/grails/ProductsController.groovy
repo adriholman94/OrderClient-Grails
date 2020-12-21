@@ -1,99 +1,89 @@
 package orderclient.grails
 
+import com.fuini.sd.web.beans.Product.ProductB
+import com.fuini.sd.web.service.Product.IProductService
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 class ProductsController {
 
-    ProductsService productsService
+    IProductService productService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond productsService.list(params), model:[productsCount: productsService.count()]
+    def index() {
+        redirect(action: "list", params: params)
     }
 
-    def show(Long id) {
-        respond productsService.get(id)
+    def list(Integer max){
+        System.out.println("params ==== " + params)
+        def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
+        def products = productService.getAll(page)
+        def next = products.size() == 0 ? 0 : (productService.getCPages() == page + 1 ? 0 : 1)
+        [productInstanceL: products, productInstanceT: products?.size(), page: page, next: next]
+    }
+
+    def show(Integer id) {
+        System.out.println("params ==== " + params)
+        def productInstance = productService.getById(id)
+        [productInstance: productInstance]
     }
 
     def create() {
-        respond new Products(params)
+        System.out.println("params ==== " + params)
+        [productInstance: new Products(params)]
     }
 
-    def save(Products products) {
-        if (products == null) {
-            notFound()
+    def save() {
+        System.out.println("params ==== " + params)
+        def productInstance = new ProductB(params)
+        def newProductInstance = productService.save(productInstance)
+        if (!newProductInstance?.getId()) {
+            render(view: "create", model: [productInstance: productInstance])
             return
         }
-
-        try {
-            productsService.save(products)
-        } catch (ValidationException e) {
-            respond products.errors, view:'create'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'products.label', default: 'Products'), products.id])
-                redirect products
-            }
-            '*' { respond products, [status: CREATED] }
-        }
+        flash.message = message(code: 'default.created.message', args: [message(code: 'products.label', default: 'Products'), newProductInstance.getId()])
+        redirect(action: "show", id: newProductInstance.getId())
     }
 
-    def edit(Long id) {
-        respond productsService.get(id)
-    }
-
-    def update(Products products) {
-        if (products == null) {
-            notFound()
+    def edit(Integer id) {
+        def productInstance = productService.getById(id.intValue())
+        if (!productInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'products.label', default: 'Products'), id])
+            redirect(action: "list")
             return
         }
-
-        try {
-            productsService.save(products)
-        } catch (ValidationException e) {
-            respond products.errors, view:'edit'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'products.label', default: 'Products'), products.id])
-                redirect products
-            }
-            '*'{ respond products, [status: OK] }
-        }
+        [productInstance: productInstance]
     }
 
-    def delete(Long id) {
-        if (id == null) {
-            notFound()
-            return
-        }
+    def update() {
+        System.out.println("params ==== " + params)
+        def newProductInstance = new ProductB(params)
+        newProductInstance.setId(Integer.parseInt(params.get("edit")))
+        newProductInstance.setProductName(params.get("productName"))
+        newProductInstance.setProductPrice(params.get("productPrice"))
+        productService.update(newProductInstance)
 
-        productsService.delete(id)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'products.label', default: 'Products'), id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'products.label', default: 'Products'), newProductInstance.getId()])
+        redirect(action: "show", id: newProductInstance.getId())
     }
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'products.label', default: 'Products'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
+    def delete(Integer id) {
+        def productInstance = productService.delete(id)
+        if (!productInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [
+                    message(code: 'products.label', default: 'Products'),
+                    id
+            ])
+            redirect(action: "list")
+            return
+        }else {
+            flash.message = message(code: 'default.deleted.message', args: [
+                    message(code: 'products.label', default: 'Products'),
+                    id
+            ])
+            redirect(action: "list")
+            return
         }
     }
 }

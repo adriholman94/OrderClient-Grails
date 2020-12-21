@@ -11,4 +11,6 @@ public interface ICategoryService extends IBaseService<CategoryB, CategoryDTO> {
     Integer getCPages();
 
     CategoryB delete(Integer id);
+
+    CategoryB toBean(CategoryDTO categoryDTO);
 }

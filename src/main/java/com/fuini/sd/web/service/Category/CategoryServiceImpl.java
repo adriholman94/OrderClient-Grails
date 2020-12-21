@@ -79,4 +79,8 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
         CategoryDTO dto = categoryResource.delete(id);
         return dto.getId() == null ? null : convertDtoToBean(dto);
     }
+
+    public CategoryB toBean(CategoryDTO categoryDTO){
+        return convertDtoToBean(categoryDTO);
+    }
 }
