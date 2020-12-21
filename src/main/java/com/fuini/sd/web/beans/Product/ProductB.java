@@ -12,6 +12,7 @@ public class ProductB extends BaseBean {
     private String productName;
     private Integer productPrice;
     private CategoryB category;
+    private String categoryName;
 
     public ProductB(Map<String, String> params) {
         super(params);
@@ -48,5 +49,14 @@ public class ProductB extends BaseBean {
         }
         setProductName(params.get("productName"));
         setProductPrice(Integer.valueOf(params.get("productPrice")));
+        //setCategoryName(params.get("categoryName"));
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

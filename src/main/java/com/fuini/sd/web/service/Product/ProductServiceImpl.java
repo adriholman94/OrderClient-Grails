@@ -6,6 +6,7 @@ import com.fuini.sd.web.beans.Product.ProductB;
 import com.fuini.sd.web.rest.Product.IProductResource;
 import com.fuini.sd.web.service.Base.BaseServiceImpl;
 import com.fuini.sd.web.service.Category.ICategoryService;
+import io.micronaut.context.annotation.Primary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,10 @@ import java.util.Map;
 public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> implements IProductService {
 
     @Autowired
-    private ICategoryService _categoryService;
+    private IProductResource productResource;
 
     @Autowired
-    private IProductResource productResource;
+    private ICategoryService _categoryService;
 
     private Integer pages;
 
@@ -32,18 +33,23 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
         params.put("productName", dto.getProductName());
         params.put("productPrice", String.valueOf(dto.getProductPrice()));
         final ProductB productB = new ProductB(params);
-        productB.setCategory(_categoryService.toBean(dto.getCategory()));
+        productB.setCategory(_categoryService.getById(dto.getCategory().getId()));
         return productB;
     }
 
     @Override
     protected ProductDTO convertBeanToDto(ProductB bean) {
-        return null;
+        final ProductDTO DTO = new ProductDTO();
+        DTO.setId(bean.getId());
+        DTO.setProductName(bean.getProductName());
+        DTO.setCategory(_categoryService.toDTO(bean.getCategory()));
+        return DTO;
     }
 
     @Override
     public ProductB getById(Integer id) {
-        return null;
+        final ProductDTO productDTO = productResource.getById(id);
+        return convertDtoToBean(productDTO);
     }
 
     @Override
@@ -51,6 +57,7 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
         final ProductResult result = productResource.getAll(page);
         final List<ProductDTO> dto = null == result.getProducts() ? new ArrayList<>() : result.getProducts();
         setCPages(result.getPages());
+        System.out.println(result.getPages());
         final List<ProductB> products = new ArrayList<>();
         dto.forEach(c -> products.add(convertDtoToBean(c)));
         return products;
@@ -68,7 +75,7 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
 
     @Override
     public Integer getCPages() {
-        return null;
+        return pages;
     }
 
     public void setCPages(Integer pages) {

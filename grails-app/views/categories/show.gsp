@@ -25,18 +25,22 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
     <ol class="property-list categories">
-    <li class="fieldcontain">
-        <label id="firstName-label" class="property-label">Category Name:</label>
-        <div class="property-value" aria-labelledby="firstName-label">${fieldValue(bean: categoryInstance, field: "categoryName")}</div>
-    </li>
-    </ol>categoryInstance
+        <li class="fieldcontain">
+            <label id="firstName-label" class="property-label">Category Name:</label>
+
+            <div class="property-value"
+                 aria-labelledby="firstName-label">${fieldValue(bean: categoryInstance, field: "categoryName")}</div>
+        </li>
+    </ol>
     <g:form method="DELETE">
         <fieldset class="buttons">
-            <g:hiddenField name="id" value="${categoryInstance?.id}" />
+            <g:hiddenField name="id" value="${categoryInstance?.id}"/>
             <g:link class="btn btn-outline-secondary btn-sm" action="edit" id="${categoryInstance?.id}">
                 Edit
             </g:link>
-            <g:actionSubmit class="btn btn-outline-secondary btn-sm" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+            <g:actionSubmit class="btn btn-outline-secondary btn-sm" action="delete"
+                            value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate=""
+                            onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
         </fieldset>
     </g:form>
 </div>

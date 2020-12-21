@@ -83,4 +83,9 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     public CategoryB toBean(CategoryDTO categoryDTO){
         return convertDtoToBean(categoryDTO);
     }
+
+    @Override
+    public CategoryDTO toDTO(CategoryB category) {
+        return convertBeanToDto(category);
+    }
 }

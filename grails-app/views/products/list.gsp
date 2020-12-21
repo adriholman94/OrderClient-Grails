@@ -51,9 +51,6 @@
                         ${fieldValue(bean: productInstance, field: "productPrice")}
                     </g:link>
                 </td>
-                <td>
-                    ${fieldValue(bean: productInstance, field: "category.categoryName")}
-                </td>
             </tr>
         </g:each>
         </tbody>

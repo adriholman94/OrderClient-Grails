@@ -13,4 +13,6 @@ public interface ICategoryService extends IBaseService<CategoryB, CategoryDTO> {
     CategoryB delete(Integer id);
 
     CategoryB toBean(CategoryDTO categoryDTO);
+
+    CategoryDTO toDTO(CategoryB category);
 }

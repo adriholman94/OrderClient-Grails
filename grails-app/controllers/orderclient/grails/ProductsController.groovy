@@ -9,14 +9,14 @@ class ProductsController {
 
     IProductService productService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index() {
         redirect(action: "list", params: params)
     }
 
     def list(Integer max){
-        System.out.println("params ==== " + params)
+        System.out.println("params -> " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
         def products = productService.getAll(page)
         def next = products.size() == 0 ? 0 : (productService.getCPages() == page + 1 ? 0 : 1)
@@ -24,18 +24,18 @@ class ProductsController {
     }
 
     def show(Integer id) {
-        System.out.println("params ==== " + params)
+        System.out.println("params -> " + params)
         def productInstance = productService.getById(id)
         [productInstance: productInstance]
     }
 
     def create() {
-        System.out.println("params ==== " + params)
+        System.out.println("params -> " + params)
         [productInstance: new Products(params)]
     }
 
     def save() {
-        System.out.println("params ==== " + params)
+        System.out.println("params -> " + params)
         def productInstance = new ProductB(params)
         def newProductInstance = productService.save(productInstance)
         if (!newProductInstance?.getId()) {
@@ -57,7 +57,7 @@ class ProductsController {
     }
 
     def update() {
-        System.out.println("params ==== " + params)
+        System.out.println("params -> " + params)
         def newProductInstance = new ProductB(params)
         newProductInstance.setId(Integer.parseInt(params.get("edit")))
         newProductInstance.setProductName(params.get("productName"))
@@ -69,6 +69,7 @@ class ProductsController {
     }
 
     def delete(Integer id) {
+        System.out.println("params -> " + params)
         def productInstance = productService.delete(id)
         if (!productInstance) {
             flash.message = message(code: 'default.not.found.message', args: [

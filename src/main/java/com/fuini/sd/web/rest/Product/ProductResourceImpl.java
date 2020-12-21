@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository("productResource")
 public class ProductResourceImpl extends BaseResourceImpl<ProductDTO> implements IProductResource {
 
-    public ProductResourceImpl(Class<ProductDTO> productDTOClass, String resourcePath) {
-        super(productDTOClass, "products");
+    public ProductResourceImpl() {
+        super(ProductDTO.class, "products");
     }
 
     @Override
