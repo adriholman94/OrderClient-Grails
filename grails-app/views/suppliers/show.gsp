@@ -26,7 +26,7 @@
     </g:if>
     <ol class="property-list suppliers">
     <li class="fieldcontain">
-        <label id="firstName-label" class="property-label">Supplier Name:</label>
+        <label id="firstName-label" class="property-label">supplier Name:</label>
         <div class="property-value" aria-labelledby="firstName-label">${fieldValue(bean: supplierInstance, field: "supplierName")}</div>
     </li>
     </ol>

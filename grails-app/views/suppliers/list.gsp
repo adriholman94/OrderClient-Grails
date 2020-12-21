@@ -46,23 +46,3 @@
         </g:each>
         </tbody>
     </table>
-
-    <nav>
-        <ul class="pagination justify-content-start">
-            <li class="page-item">
-                <g:if test="${page > 0}">
-                    <g:link class="btn btn-outline-secondary btn-sm" id="${page - 1}"
-                            action="list">Back</g:link>
-                </g:if>
-            </li>
-            <li class="page-item ">
-                <g:if test="${next > 0}">
-                    <g:link class="btn btn-outline-secondary btn-sm" id="${page + 1}"
-                            action="list">Next</g:link>
-                </g:if>
-            </li>
-        </ul>
-    </nav>
-</div>
-</body>
-</html>
