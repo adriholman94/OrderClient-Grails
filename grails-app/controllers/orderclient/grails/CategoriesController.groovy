@@ -45,7 +45,7 @@ class CategoriesController {
         redirect(action: "show", id: newCategoryInstance.getId())
     }
 
-    def edit(Long id) {
+    def edit(Integer id) {
         def categoryInstance = categoryService.getById(id.intValue())
         if (!categoryInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'categories.label', default: 'Categories'), id])
@@ -67,7 +67,7 @@ class CategoriesController {
         redirect(action: "show", id: newCategoryInstance.getId())
     }
 
-    def delete(Long id) {
+    def delete(Integer id) {
         def categoryInstance = categoryService.delete(id)
         if (!categoryInstance) {
             flash.message = message(code: 'default.not.found.message', args: [
