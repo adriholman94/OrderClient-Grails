@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<a href="#list-city" class="skip" tabindex="-1"><g:message
+<a href="#list-category" class="skip" tabindex="-1"><g:message
         code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
@@ -21,7 +21,7 @@
     </ul>
 </div>
 
-<div id="list-city" class="content scaffold-list" role="main">
+<div id="list-category" class="content scaffold-list" role="main">
     <h1>
         <g:message code="default.list.label" args="[entityName]"/>
     </h1>
