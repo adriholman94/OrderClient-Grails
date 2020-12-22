@@ -5,7 +5,7 @@ import com.fuini.sd.web.service.Category.ICategoryService
 
 class CategoriesController {
 
-    def ICategoryService categoryService
+    ICategoryService categoryService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
@@ -13,7 +13,7 @@ class CategoriesController {
         redirect(action: "list", params: params)
     }
 
-    def list(Integer max){
+    def list(){
         System.out.println("params -> " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
         def categories = categoryService.getAll(page)
@@ -57,7 +57,6 @@ class CategoriesController {
     def update() {
         System.out.println("params -> " + params)
         def newCategoryInstance = new CategoryB(params)
-        newCategoryInstance.setId(Integer.parseInt(params.get("edit")))
         newCategoryInstance.setCategoryName(params.get("categoryName"))
         categoryService.update(newCategoryInstance)
 

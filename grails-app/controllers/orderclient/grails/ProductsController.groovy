@@ -1,6 +1,7 @@
 package orderclient.grails
 
 import com.fuini.sd.web.beans.Product.ProductB
+import com.fuini.sd.web.service.Category.ICategoryService
 import com.fuini.sd.web.service.Product.IProductService
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
@@ -8,6 +9,7 @@ import static org.springframework.http.HttpStatus.*
 class ProductsController {
 
     IProductService productService
+    ICategoryService categoryService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
@@ -15,7 +17,7 @@ class ProductsController {
         redirect(action: "list", params: params)
     }
 
-    def list(Integer max){
+    def list(){
         System.out.println("params -> " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
         def products = productService.getAll(page)
@@ -31,12 +33,15 @@ class ProductsController {
 
     def create() {
         System.out.println("params -> " + params)
-        [productInstance: new Products(params)]
+        [productInstance: new Products(params), categories:categoryService.getCategories()]
     }
 
     def save() {
         System.out.println("params -> " + params)
         def productInstance = new ProductB(params)
+        def category = categoryService.getById(Integer.valueOf(params['categoryId']))
+        System.out.println(productInstance.productPrice)
+        productInstance.setCategory(category)
         def newProductInstance = productService.save(productInstance)
         if (!newProductInstance?.getId()) {
             render(view: "create", model: [productInstance: productInstance])
@@ -53,19 +58,21 @@ class ProductsController {
             redirect(action: "list")
             return
         }
-        [productInstance: productInstance]
+        [productInstance: productInstance, categories:categoryService.getCategories()]
     }
 
     def update() {
         System.out.println("params -> " + params)
+        def productInstance = productService.getById(Integer.parseInt(params.get("id")))
         def newProductInstance = new ProductB(params)
-        newProductInstance.setId(Integer.parseInt(params.get("edit")))
         newProductInstance.setProductName(params.get("productName"))
-        newProductInstance.setProductPrice(params.get("productPrice"))
-        productService.update(newProductInstance)
+        newProductInstance.setProductPrice(Integer.valueOf(params.get("productPrice")))
+        def category = categoryService.getById(Integer.valueOf(params['categoryId']))
+        newProductInstance.setCategory(category)
+        productInstance = productService.update(newProductInstance)
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'products.label', default: 'Products'), newProductInstance.getId()])
-        redirect(action: "show", id: newProductInstance.getId())
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'products.label', default: 'Products'), productInstance.getId()])
+        redirect(action: "show", id: productInstance.getId())
     }
 
     def delete(Integer id) {

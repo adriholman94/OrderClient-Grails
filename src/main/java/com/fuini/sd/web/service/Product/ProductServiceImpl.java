@@ -1,12 +1,12 @@
 package com.fuini.sd.web.service.Product;
 
+import com.fiuni.sd.DTO.Category.CategoryDTO;
 import com.fiuni.sd.DTO.Product.ProductDTO;
 import com.fiuni.sd.DTO.Product.ProductResult;
 import com.fuini.sd.web.beans.Product.ProductB;
 import com.fuini.sd.web.rest.Product.IProductResource;
 import com.fuini.sd.web.service.Base.BaseServiceImpl;
 import com.fuini.sd.web.service.Category.ICategoryService;
-import io.micronaut.context.annotation.Primary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +42,7 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
         final ProductDTO DTO = new ProductDTO();
         DTO.setId(bean.getId());
         DTO.setProductName(bean.getProductName());
+        DTO.setProductPrice(bean.getProductPrice());
         DTO.setCategory(_categoryService.toDTO(bean.getCategory()));
         return DTO;
     }
@@ -57,7 +58,6 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
         final ProductResult result = productResource.getAll(page);
         final List<ProductDTO> dto = null == result.getProducts() ? new ArrayList<>() : result.getProducts();
         setCPages(result.getPages());
-        System.out.println(result.getPages());
         final List<ProductB> products = new ArrayList<>();
         dto.forEach(c -> products.add(convertDtoToBean(c)));
         return products;
@@ -65,12 +65,14 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
 
     @Override
     public ProductB save(ProductB bean) {
-        return null;
+        final ProductDTO dto = convertBeanToDto(bean);
+        return convertDtoToBean(productResource.save(dto));
     }
 
     @Override
     public ProductB update(ProductB updateBean) {
-        return null;
+        final ProductDTO dto = convertBeanToDto(updateBean);
+        return convertDtoToBean(productResource.update(dto));
     }
 
     @Override

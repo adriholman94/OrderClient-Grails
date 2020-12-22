@@ -88,4 +88,15 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryB, CategoryDTO>
     public CategoryDTO toDTO(CategoryB category) {
         return convertBeanToDto(category);
     }
+
+    @Override
+    public List<CategoryB> getCategories() {
+        final CategoryResult result = categoryResource.getCategories();
+        final List<CategoryDTO> cList = null == result.getCategories() ? new ArrayList<>() : result.getCategories();
+        final List<CategoryB> categories = new ArrayList<>();
+        for (CategoryDTO dto : cList) {
+            categories.add(convertDtoToBean(dto));
+        }
+        return categories;
+    }
 }

@@ -35,7 +35,6 @@
         <tr>
             <g:sortableColumn property="productName" title="Name"/>
             <g:sortableColumn property="productPrice" title="Price"/>
-            <g:sortableColumn property="category" title="Category"/>
         </tr>
         </thead>
         <tbody>

@@ -14,7 +14,7 @@ public class ProductResourceImpl extends BaseResourceImpl<ProductDTO> implements
 
     @Override
     public ProductResult getAll(Integer page) {
-        System.out.println("all -> " + getWebResource().path("/page/" + page).toString());
+        System.out.println("page -> " + getWebResource().path("/page/" + page).toString());
         return getWebResource().path("/page/" + page).get(ProductResult.class);
     }
 

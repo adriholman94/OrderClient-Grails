@@ -2,6 +2,7 @@ package com.fuini.sd.web.rest.Category;
 
 import com.fiuni.sd.DTO.Category.CategoryDTO;
 import com.fiuni.sd.DTO.Category.CategoryResult;
+import com.fiuni.sd.DTO.Product.ProductResult;
 import com.fuini.sd.web.rest.Base.BaseResourceImpl;
 import org.springframework.stereotype.Repository;
 
@@ -30,5 +31,11 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
         System.out.println("delete -> " + getWebResource().path("/" + id).toString());
         CategoryDTO DTO = getWebResource().path("/" + id).delete(getDTOClass());
         return DTO;
+    }
+
+    @Override
+    public CategoryResult getCategories() {
+        System.out.println("all -> " + getWebResource().path("/all").toString());
+        return getWebResource().path("/all").get(CategoryResult.class);
     }
 }

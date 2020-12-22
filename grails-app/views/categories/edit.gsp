@@ -37,7 +37,7 @@
             <g:render template="form"/>
         </fieldset>
         <fieldset class="buttons">
-            <button type="submit" class="btn btn-outline-secondary btn-sm" name="edit" value="${categoryInstance?.id}">
+            <button type="submit" class="btn btn-outline-secondary btn-sm" name="id" value="${categoryInstance?.id}">
                 Update
             </button>
         </fieldset>

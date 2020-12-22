@@ -11,4 +11,6 @@ public interface ICategoryResource extends IBaseResource<CategoryDTO> {
     CategoryDTO update(CategoryDTO categoryDTO);
 
     CategoryDTO delete(Integer id);
+
+    CategoryResult getCategories();
 }
