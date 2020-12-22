@@ -35,6 +35,7 @@
         <tr>
             <g:sortableColumn property="productName" title="Name"/>
             <g:sortableColumn property="productPrice" title="Price"/>
+            <th>Category</th>
         </tr>
         </thead>
         <tbody>
@@ -49,6 +50,9 @@
                     <g:link action="show" id="${productInstance.id}">
                         ${fieldValue(bean: productInstance, field: "productPrice")}
                     </g:link>
+                </td>
+                <td>
+                    ${fieldValue(bean: productInstance, field: "category.categoryName")}
                 </td>
             </tr>
         </g:each>
