@@ -50,6 +50,11 @@ public class PurchaseRecordServiceImpl extends BaseServiceImpl<PurchaseRecordB, 
         final PurchaseRecordDTO purchaseRecordDTO = purchaseRecordResource.getById(id);
         final List<PurchaseRecordDetailB> details = new ArrayList<>();
         final PurchaseRecordB purchaseRecordB = convertDtoToBean(purchaseRecordDTO);
+        if(purchaseRecordDTO.getPurchaseRecordDetails() != null) {
+            for (PurchaseRecordDetailDTO detail : purchaseRecordDTO.getPurchaseRecordDetails()) {
+                details.add(convertDtoToBean(detail));
+            }
+        }
         return purchaseRecordB;
     }
 

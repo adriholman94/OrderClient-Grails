@@ -40,15 +40,30 @@
             </tbody>
         </table>
     </div>
+    <div class="jumbotron" id="detail" style="margin-left: 25%; margin-right: 25%">
+        <table class="table">
+            <thead class="text-white color-fondo">
+            <tr>
+                <th>Product</th>
+                <th>Supplier</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Quantity Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${purchaseRecordDetailInstance}" status="i" var="detailInstance">
+                <tr>
+                    <td>${fieldValue(bean: detailInstance, field: "product.productName")}</td>
+                    <td>${fieldValue(bean: detailInstance, field: "supplier.supplierName")}</td>
+                    <td>${fieldValue(bean: detailInstance, field: "unitPrice")}</td>
+                    <td>${fieldValue(bean: detailInstance, field: "quantity")}</td>
+                    <td>${fieldValue(bean: detailInstance, field: "totalPrice")}</td>
+                </tr>
+            </g:each>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<g:form resource="${this.purchaseRecords}" method="DELETE">
-    <fieldset class="buttons">
-        <g:link class="edit" action="edit" resource="${this.purchaseRecords}"><g:message
-                code="default.button.edit.label" default="Edit"/></g:link>
-        <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-               onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-    </fieldset>
-</g:form>
 </body>
 </html>

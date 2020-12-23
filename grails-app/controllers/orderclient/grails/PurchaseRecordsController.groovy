@@ -16,7 +16,7 @@ class PurchaseRecordsController {
 
     def show(Integer id) {
         def purchaseRecordInstance = purchaseRecordService.getById(id)
-        [purchaseRecordInstance: purchaseRecordInstance]
+        [purchaseRecordInstance: purchaseRecordInstance, purchaseRecordDetailInstance: purchaseRecordInstance.getPurchaseRecordDetails()]
     }
 
     def create() {
