@@ -26,6 +26,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         final Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(dto.getId()));
         params.put("userName", dto.getUserName());
+        params.put("email", dto.getUserMail());
+        params.put("password", dto.getUserPassword());
         return new UserB(params);
     }
 
@@ -34,6 +36,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         final UserDTO DTO = new UserDTO();
         DTO.setId(bean.getId());
         DTO.setUserName(bean.getUserName());
+        DTO.setUserMail(bean.getUserMail());
+        DTO.setUserPassword(bean.getUserPassword());
         return DTO;
     }
 

@@ -34,7 +34,7 @@
         <thead>
         <tr>
             <g:sortableColumn property="userName" title="Name"/>
-
+            <g:sortableColumn property="email" title="email"/>
             <th>Role</th>
         </tr>
         </thead>
@@ -46,7 +46,11 @@
                         ${fieldValue(bean: userInstance, field: "userName")}
                     </g:link>
                 </td>
-
+                <td>
+                    <g:link action="show" id="${userInstance.id}">
+                        ${fieldValue(bean: userInstance, field: "email")}
+                    </g:link>
+                </td>
                 <td>
                     ${fieldValue(bean: userInstance, field: "role.roleName")}
                 </td>

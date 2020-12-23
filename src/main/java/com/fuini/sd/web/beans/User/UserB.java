@@ -8,6 +8,9 @@ import java.util.Map;
 public class UserB extends BaseBean {
 
     private String userName;
+    private String email;
+    private String password;
+
 
     private RoleB role;
 
@@ -21,6 +24,20 @@ public class UserB extends BaseBean {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    public String getUserMail() {
+        return email;
+    }
+
+    public String getUserPassword() {
+        return password;
+    }
+    public void setUserMail(String email) {
+        this.email = email;
+    }
+
+    public void setUserPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 
     public RoleB getRole() {
@@ -37,6 +54,8 @@ public class UserB extends BaseBean {
             setId(Integer.valueOf(params.get("id")));
         }
         setUserName(params.get("userName"));
+        setUserMail(params.get("email"));
+        setUserPassword(params.get("password"));
 
     }
 }

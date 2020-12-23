@@ -40,7 +40,7 @@ class UsersController {
         System.out.println("params -> " + params)
         def userInstance = new UserB(params)
         def role = roleService.getById(Integer.valueOf(params['roleId']))
-        System.out.println(userInstance.userPrice)
+
         userInstance.setRole(role)
         def newUserInstance = userService.save(userInstance)
         if (!newUserInstance?.getId()) {
@@ -66,7 +66,8 @@ class UsersController {
         def userInstance = userService.getById(Integer.parseInt(params.get("id")))
         def newUserInstance = new UserB(params)
         newUserInstance.setUserName(params.get("userName"))
-        newUserInstance.setUserPrice(Integer.valueOf(params.get("userPrice")))
+        newUserInstance.setUserName(params.get("email"))
+        newUserInstance.setUserName(params.get("password"))
         def role = roleService.getById(Integer.valueOf(params['roleId']))
         newUserInstance.setRole(role)
         userInstance = userService.update(newUserInstance)
