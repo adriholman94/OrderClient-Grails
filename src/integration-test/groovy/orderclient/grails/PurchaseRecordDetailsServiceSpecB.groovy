@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory
 
 @Integration
 @Rollback
-class PurchaseRecordDetailsServiceSpec extends Specification {
+class PurchaseRecordDetailsServiceSpecB extends Specification {
 
     PurchaseRecordDetailsService purchaseRecordDetailsService
     SessionFactory sessionFactory

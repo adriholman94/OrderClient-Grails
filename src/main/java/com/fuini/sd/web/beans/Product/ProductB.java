@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class ProductB extends BaseBean {
 
-    private static final long serialVersionUID = 1L;
-
     private String productName;
     private Integer productPrice;
     private CategoryB category;
