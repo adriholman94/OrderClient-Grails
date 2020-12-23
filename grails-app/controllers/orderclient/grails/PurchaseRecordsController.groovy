@@ -1,22 +1,21 @@
 package orderclient.grails
 
-import com.fuini.sd.web.service.PurchaseRecord.IPurchaseRecordService
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 class PurchaseRecordsController {
 
-    IPurchaseRecordService purchaseRecordService
+    PurchaseRecordsService purchaseRecordsService
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-
+        params.max = Math.min(max ?: 10, 100)
+        respond purchaseRecordsService.list(params), model:[purchaseRecordsCount: purchaseRecordsService.count()]
     }
 
-    def show(Integer id) {
-        def purchaseRecordInstance = purchaseRecordService.getById(id)
-        [purchaseRecordInstance: purchaseRecordInstance]
+    def show(Long id) {
+        respond purchaseRecordsService.get(id)
     }
 
     def create() {

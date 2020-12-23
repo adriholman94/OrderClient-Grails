@@ -5,7 +5,7 @@ import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
 import spock.lang.*
 
-class PurchaseRecordDetailsControllerSpecB extends Specification implements ControllerUnitTest<PurchaseRecordDetailsController>, DomainUnitTest<PurchaseRecordDetails> {
+class PurchaseRecordDetailsControllerSpec extends Specification implements ControllerUnitTest<PurchaseRecordDetailsController>, DomainUnitTest<PurchaseRecordDetails> {
 
     def populateValidParams(params) {
         assert params != null

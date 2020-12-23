@@ -3,7 +3,7 @@ package orderclient.grails
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class PurchaseRecordDetailsSpecB extends Specification implements DomainUnitTest<PurchaseRecordDetails> {
+class PurchaseRecordDetailsSpec extends Specification implements DomainUnitTest<PurchaseRecordDetails> {
 
     def setup() {
     }
