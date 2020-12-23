@@ -12,10 +12,10 @@ import com.fuini.sd.web.service.Supplier.SupplierServiceImpl
 beans = {
     //Resources
     categoryResource(CategoryResourceImpl)
-    roleResource(RoleResourceImpl)
     supplierResource(SupplierResourceImpl)
     productResource(ProductResourceImpl)
     purchaseRecordResource(PurchaseRecordResourceImpl)
+    roleResource(RoleResourceImpl)
 
     //Services
     categoryService(CategoryServiceImpl)
