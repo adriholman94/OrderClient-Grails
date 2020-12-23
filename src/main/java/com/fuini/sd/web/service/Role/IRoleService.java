@@ -1,4 +1,4 @@
-package com.fuini.sd.web.Role;
+package com.fuini.sd.web.service.Role;
 
 import com.fiuni.sd.DTO.Role.RoleDTO;
 import com.fuini.sd.web.beans.Role.RoleB;
