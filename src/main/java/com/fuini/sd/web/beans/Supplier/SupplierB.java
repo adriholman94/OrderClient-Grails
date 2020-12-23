@@ -5,7 +5,6 @@ import com.fuini.sd.web.beans.Base.BaseBean;
 import java.util.Map;
 
 public class SupplierB extends BaseBean {
-    private static final long serialVersionUID = 1L;
 
     private String supplierName;
 
