@@ -37,7 +37,7 @@ public class UserB extends BaseBean {
     }
 
     public void setUserPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;
     }
 
     public RoleB getRole() {
