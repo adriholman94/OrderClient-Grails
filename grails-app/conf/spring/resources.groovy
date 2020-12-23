@@ -11,6 +11,7 @@ import com.fuini.sd.web.service.Supplier.SupplierServiceImpl
 beans = {
     //Resources
     categoryResource(CategoryResourceImpl)
+    roleResource(RoleResourceImpl)
     supplierResource(SupplierResourceImpl)
     productResource(ProductResourceImpl)
     purchaseRecordResource(PurchaseRecordResourceImpl)
@@ -21,4 +22,5 @@ beans = {
     productService(ProductServiceImpl)
     _categoryService(CategoryServiceImpl)
     purchaseRecordService(PurchaseRecordServiceImpl)
+    roleService(RoleServiceImpl)
 }
