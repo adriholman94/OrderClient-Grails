@@ -23,7 +23,6 @@ apply plugin:"org.grails.grails-gsp"
 
 repositories {
     maven { url "https://repo.grails.org/grails/core" }
-    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
 }
 
 configurations {
@@ -58,10 +57,6 @@ dependencies {
 
     compile fileTree(dir: 'lib', include: '*.jar')
     compile group: 'com.sun.jersey', name: 'jersey-client', version: '1.19.4'
-
-    compile 'org.grails.plugins:spring-security-core:4.0.3'
-    compile 'org.grails.plugins:spring-security-core:4.0.4.BUILD-SNAPSHOT'
-    compile "org.grails.plugins:spring-security-core:4.0.0.RC2"
 
     compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"
