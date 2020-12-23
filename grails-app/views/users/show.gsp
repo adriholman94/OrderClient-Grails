@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <g:set var="entityName" value="${message(code: 'user.label', default: 'users')}"/>
+    <g:set var="entityName" value="${message(code: 'user.label', default: 'Categories')}"/>
     <title><g:message code="default.show.label" args="[entityName]"/></title>
 </head>
 
 <body>
-<a href="#show-users" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                               default="Skip to content&hellip;"/></a>
+<a href="#show-categories" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
+                                                                 default="Skip to content&hellip;"/></a>
 
 <div class="nav" role="navigation">
     <ul>
@@ -19,25 +19,22 @@
     </ul>
 </div>
 
-<div id="show-users" class="content scaffold-show" role="main">
+<div id="show-categories" class="content scaffold-show" role="main">
     <h1><g:message code="default.show.label" args="[entityName]"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <ol class="property-list users">
+    <ol class="property-list categories">
         <li class="fieldcontain">
             <label id="firstName-label" class="property-label">User Name:</label>
-
             <div class="property-value"
-                 aria-labelledby="userName-label">${fieldValue(bean: userInstance, field: "userName")}</div>
+                 aria-labelledby="firstName-label">${fieldValue(bean: userInstance, field: "userName")}</div>
         </li>
-
         <li class="fieldcontain">
-            <label id="role-label" class="property-label">Role:</label>
-
-            <div class="property-value"
-                 aria-labelledby="role-label">${fieldValue(bean: userInstance, field: "role.roleName")}</div>
-        </li>
+                    <label id="firstName-label" class="property-label">email:</label>
+                    <div class="property-value"
+                         aria-labelledby="firstName-label">${fieldValue(bean: userInstance, field: "email")}</div>
+                </li>
     </ol>
     <g:form method="DELETE">
         <fieldset class="buttons">

@@ -33,27 +33,18 @@
     <table>
         <thead>
         <tr>
-            <g:sortableColumn property="userName" title="Name"/>
-            <g:sortableColumn property="email" title="email"/>
-            <th>Role</th>
+            <g:sortableColumn property="userName" title="User Name"/>
+             <g:sortableColumn property="email" title="email"/>
+
         </tr>
         </thead>
         <tbody>
         <g:each in="${userInstanceL}" status="i" var="userInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                <td>
-                    <g:link action="show" id="${userInstance.id}">
-                        ${fieldValue(bean: userInstance, field: "userName")}
-                    </g:link>
-                </td>
-                <td>
-                    <g:link action="show" id="${userInstance.id}">
+                <td><g:link action="show" id="${userInstance.id}">
+                    ${fieldValue(bean: userInstance, field: "userName")}
                         ${fieldValue(bean: userInstance, field: "email")}
-                    </g:link>
-                </td>
-                <td>
-                    ${fieldValue(bean: userInstance, field: "role.roleName")}
-                </td>
+                </g:link></td>
             </tr>
         </g:each>
         </tbody>

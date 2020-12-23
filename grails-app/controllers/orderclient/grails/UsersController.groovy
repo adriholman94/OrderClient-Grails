@@ -1,7 +1,6 @@
 package orderclient.grails
 
 import com.fuini.sd.web.beans.User.UserB
-import com.fuini.sd.web.service.Role.IRoleService
 import com.fuini.sd.web.service.User.IUserService
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
@@ -9,7 +8,6 @@ import static org.springframework.http.HttpStatus.*
 class UsersController {
 
     IUserService userService
-    IRoleService roleService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
@@ -33,15 +31,12 @@ class UsersController {
 
     def create() {
         System.out.println("params -> " + params)
-        [userInstance: new Users(params), roles:RoleService.getRoles()]
+        [userInstance: new Users(params)]
     }
 
     def save() {
         System.out.println("params -> " + params)
         def userInstance = new UserB(params)
-        def role = roleService.getById(Integer.valueOf(params['roleId']))
-
-        userInstance.setRole(role)
         def newUserInstance = userService.save(userInstance)
         if (!newUserInstance?.getId()) {
             render(view: "create", model: [userInstance: userInstance])
@@ -58,22 +53,19 @@ class UsersController {
             redirect(action: "list")
             return
         }
-        [userInstance: userInstance, roles:roleService.getRoles()]
+        [userInstance: userInstance]
     }
 
     def update() {
         System.out.println("params -> " + params)
-        def userInstance = userService.getById(Integer.parseInt(params.get("id")))
         def newUserInstance = new UserB(params)
         newUserInstance.setUserName(params.get("userName"))
         newUserInstance.setUserName(params.get("email"))
         newUserInstance.setUserName(params.get("password"))
-        def role = roleService.getById(Integer.valueOf(params['roleId']))
-        newUserInstance.setRole(role)
-        userInstance = userService.update(newUserInstance)
+        userService.update(newUserInstance)
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'users.label', default: 'Users'), userInstance.getId()])
-        redirect(action: "show", id: userInstance.getId())
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'users.label', default: 'Users'), newUserInstance.getId()])
+        redirect(action: "show", id: newUserInstance.getId())
     }
 
     def delete(Integer id) {
