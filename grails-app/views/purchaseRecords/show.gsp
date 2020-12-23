@@ -57,7 +57,7 @@
                     <td>${fieldValue(bean: detailInstance, field: "product.productName")}</td>
                     <td>${fieldValue(bean: detailInstance, field: "supplier.supplierName")}</td>
                     <td>${fieldValue(bean: detailInstance, field: "unitPrice")}</td>
-                    <td>${fieldValue(bean: detailInstance, field: "quantity")}</td>
+                    <td>${fieldValue(bean: detailInstance, field: "productQuantity")}</td>
                     <td>${fieldValue(bean: detailInstance, field: "totalPrice")}</td>
                 </tr>
             </g:each>

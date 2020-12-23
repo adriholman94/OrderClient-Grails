@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class PurchaseRecordDetailB extends BaseBean {
 
-    private PurchaseRecordB purchaseRecord;
     private Integer productQuantity;
     private Integer unitPrice;
     private Integer totalPrice;
@@ -26,14 +25,6 @@ public class PurchaseRecordDetailB extends BaseBean {
         setProductQuantity(Integer.valueOf(params.get("productQuantity")));
         setUnitPrice(Integer.valueOf(params.get("unitPrice")));
         setTotalPrice(Integer.valueOf(params.get("totalPrice")));
-    }
-
-    public PurchaseRecordB getPurchaseRecord() {
-        return purchaseRecord;
-    }
-
-    public void setPurchaseRecord(PurchaseRecordB purchaseRecord) {
-        this.purchaseRecord = purchaseRecord;
     }
 
     public Integer getProductQuantity() {
