@@ -1,6 +1,7 @@
 import com.fuini.sd.web.rest.Category.CategoryResourceImpl
 import com.fuini.sd.web.rest.Product.ProductResourceImpl
 import com.fuini.sd.web.rest.PurchaseRecord.PurchaseRecordResourceImpl
+import com.fuini.sd.web.rest.Role.RoleResourceImpl
 import com.fuini.sd.web.service.Category.CategoryServiceImpl
 import com.fuini.sd.web.rest.Supplier.SupplierResourceImpl
 import com.fuini.sd.web.service.Product.ProductServiceImpl

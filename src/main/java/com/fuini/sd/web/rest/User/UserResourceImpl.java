@@ -20,7 +20,7 @@ public class UserResourceImpl extends BaseResourceImpl<UserDTO> implements IUser
 
     @Override
     public UserDTO update(UserDTO userDTO) {
-        System.out.println("update -> " + getWebResource().path("/" + UserDTO.getId()).toString());
+        System.out.println("update -> " + getWebResource().path("/" + userDTO.getId()).toString());
         UserDTO updateDTO = getWebResource().path("/" + userDTO.getId()).entity(userDTO).put(getDTOClass());
         return updateDTO;
     }

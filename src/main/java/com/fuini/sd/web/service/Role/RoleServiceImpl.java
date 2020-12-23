@@ -47,7 +47,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleB, RoleDTO> implements 
     public List<RoleB> getAll(Integer page) {
         final RoleResult result = roleResource.getAll(page);
         final List<RoleDTO> dto = null == result.getRoles() ? new ArrayList<>() : result.getRoles();
-       setCPages(result.getPages());
+        //setCPages(result.getPages());
         final List<RoleB> roles = new ArrayList<>();
         dto.forEach(c -> roles.add(convertDtoToBean(c)));
         return roles;
