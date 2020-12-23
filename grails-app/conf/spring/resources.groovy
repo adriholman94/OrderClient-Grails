@@ -7,6 +7,7 @@ import com.fuini.sd.web.rest.Supplier.SupplierResourceImpl
 import com.fuini.sd.web.service.Product.ProductServiceImpl
 import com.fuini.sd.web.service.PurchaseRecord.PurchaseRecordServiceImpl
 import com.fuini.sd.web.service.Supplier.SupplierServiceImpl
+import com.fuini.sd.web.service.Role.RoleServiceImpl
 
 // Place your Spring DSL code here
 beans = {
