@@ -13,4 +13,6 @@ public interface IProductResource extends IBaseResource<ProductDTO> {
 
     ProductDTO delete(Integer id);
 
+    ProductResult getProducts();
+
 }

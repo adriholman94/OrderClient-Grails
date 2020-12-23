@@ -40,7 +40,7 @@
             </tbody>
         </table>
     </div>
-    <div class="jumbotron" id="detail" style="margin-left: 25%; margin-right: 25%">
+    <div class="" id="detail" style="margin-left: 25%; margin-right: 25%">
         <table class="table">
             <thead class="text-white color-fondo">
             <tr>
@@ -63,7 +63,14 @@
             </g:each>
             </tbody>
         </table>
+
     </div>
+    <g:hiddenField name="id" value="${purchaseRecordInstance?.id}"/>
+    <fieldset class="buttons">
+        <g:link class="btn btn-outline-secondary btn-sm" action="edit" id="${purchaseRecordInstance?.id}">
+            Edit
+        </g:link>
+    </fieldset>
 </div>
 </body>
 </html>

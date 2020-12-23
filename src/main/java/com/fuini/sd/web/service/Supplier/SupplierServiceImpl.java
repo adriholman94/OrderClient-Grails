@@ -1,9 +1,12 @@
 package com.fuini.sd.web.service.Supplier;
 
+import com.fiuni.sd.DTO.Category.CategoryDTO;
+import com.fiuni.sd.DTO.Category.CategoryResult;
 import com.fiuni.sd.DTO.Supplier.SupplierDTO;
 import com.fiuni.sd.DTO.Supplier.SupplierResult;
 import com.fiuni.sd.DTO.Supplier.SupplierDTO;
 import com.fiuni.sd.DTO.Supplier.SupplierResult;
+import com.fuini.sd.web.beans.Category.CategoryB;
 import com.fuini.sd.web.beans.Supplier.SupplierB;
 import com.fuini.sd.web.beans.Supplier.SupplierB;
 import com.fuini.sd.web.rest.Supplier.ISupplierResource;
@@ -82,5 +85,16 @@ public class SupplierServiceImpl extends BaseServiceImpl<SupplierB, SupplierDTO>
     public SupplierB delete(Integer id) {
         SupplierDTO dto = supplierResource.delete(id);
         return dto.getId() == null ? null : convertDtoToBean(dto);
+    }
+
+    @Override
+    public List<SupplierB> getSuppliers() {
+        final SupplierResult result = supplierResource.getSuppliers();
+        final List<SupplierDTO> cList = null == result.getSuppliers() ? new ArrayList<>() : result.getSuppliers();
+        final List<SupplierB> suppliers = new ArrayList<>();
+        for (SupplierDTO dto : cList) {
+            suppliers.add(convertDtoToBean(dto));
+        }
+        return suppliers;
     }
 }

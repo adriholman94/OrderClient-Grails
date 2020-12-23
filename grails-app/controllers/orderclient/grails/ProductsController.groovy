@@ -17,7 +17,7 @@ class ProductsController {
         redirect(action: "list", params: params)
     }
 
-    def list(){
+    def list() {
         System.out.println("params -> " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
         def products = productService.getAll(page)
@@ -33,7 +33,7 @@ class ProductsController {
 
     def create() {
         System.out.println("params -> " + params)
-        [productInstance: new Products(params), categories:categoryService.getCategories()]
+        [productInstance: new Products(params), categories: categoryService.getCategories()]
     }
 
     def save() {
@@ -52,13 +52,14 @@ class ProductsController {
     }
 
     def edit(Integer id) {
+        System.out.println("params -> " + params)
         def productInstance = productService.getById(id.intValue())
         if (!productInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'products.label', default: 'Products'), id])
             redirect(action: "list")
             return
         }
-        [productInstance: productInstance, categories:categoryService.getCategories()]
+        [productInstance: productInstance, categories: categoryService.getCategories()]
     }
 
     def update() {
@@ -85,7 +86,7 @@ class ProductsController {
             ])
             redirect(action: "list")
             return
-        }else {
+        } else {
             flash.message = message(code: 'default.deleted.message', args: [
                     message(code: 'products.label', default: 'Products'),
                     id

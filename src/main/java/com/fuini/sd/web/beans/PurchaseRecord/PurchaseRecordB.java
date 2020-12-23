@@ -22,7 +22,8 @@ public class PurchaseRecordB extends BaseBean {
         if (params.containsKey("id")) {
             setId(Integer.valueOf(params.get("id")));
         }
-        setFinalPrice(Integer.valueOf(params.get("finalPrice")));
+        String finalPrice = null == params.get("finalPrice") ? "0" : params.get("finalPrice");
+        setFinalPrice(Integer.valueOf(finalPrice));
     }
 
     public Date getDate() {

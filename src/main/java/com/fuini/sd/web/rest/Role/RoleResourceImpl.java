@@ -19,7 +19,7 @@ public class RoleResourceImpl extends BaseResourceImpl<RoleDTO> implements IRole
     }
 
     @Override
-    public RoleDTO update(RoleDTO RoleDTO) {
+    public RoleDTO update(RoleDTO roleDTO) {
         System.out.println("update -> " + getWebResource().path("/" + roleDTO.getId()).toString());
         RoleDTO updateDTO = getWebResource().path("/" + roleDTO.getId()).entity(roleDTO).put(getDTOClass());
         return updateDTO;

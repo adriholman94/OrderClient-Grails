@@ -1,8 +1,10 @@
 package com.fuini.sd.web.service.Product;
 
 import com.fiuni.sd.DTO.Category.CategoryDTO;
+import com.fiuni.sd.DTO.Category.CategoryResult;
 import com.fiuni.sd.DTO.Product.ProductDTO;
 import com.fiuni.sd.DTO.Product.ProductResult;
+import com.fuini.sd.web.beans.Category.CategoryB;
 import com.fuini.sd.web.beans.Product.ProductB;
 import com.fuini.sd.web.rest.Product.IProductResource;
 import com.fuini.sd.web.service.Base.BaseServiceImpl;
@@ -87,5 +89,16 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductB, ProductDTO> im
     @Override
     public ProductB delete(Integer id) {
         return null;
+    }
+
+    @Override
+    public List<ProductB> getProducts() {
+        final ProductResult result = productResource.getProducts();
+        final List<ProductDTO> cList = null == result.getProducts() ? new ArrayList<>() : result.getProducts();
+        final List<ProductB> products = new ArrayList<>();
+        for (ProductDTO dto : cList) {
+            products.add(convertDtoToBean(dto));
+        }
+        return products;
     }
 }

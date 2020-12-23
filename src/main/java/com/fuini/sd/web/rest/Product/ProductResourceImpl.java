@@ -1,5 +1,6 @@
 package com.fuini.sd.web.rest.Product;
 
+import com.fiuni.sd.DTO.Category.CategoryResult;
 import com.fiuni.sd.DTO.Product.ProductDTO;
 import com.fiuni.sd.DTO.Product.ProductResult;
 import com.fuini.sd.web.rest.Base.BaseResourceImpl;
@@ -30,5 +31,11 @@ public class ProductResourceImpl extends BaseResourceImpl<ProductDTO> implements
         System.out.println("delete -> " + getWebResource().path("/" + id).toString());
         ProductDTO DTO = getWebResource().path("/" + id).delete(getDTOClass());
         return DTO;
+    }
+
+    @Override
+    public ProductResult getProducts() {
+        System.out.println("all -> " + getWebResource().path("/all").toString());
+        return getWebResource().path("/all").get(ProductResult.class);
     }
 }
