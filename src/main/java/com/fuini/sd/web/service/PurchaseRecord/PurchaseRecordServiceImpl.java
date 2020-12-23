@@ -55,6 +55,7 @@ public class PurchaseRecordServiceImpl extends BaseServiceImpl<PurchaseRecordB, 
                 details.add(convertDtoToBean(detail));
             }
         }
+        purchaseRecordB.setPurchaseRecordDetails(details);
         return purchaseRecordB;
     }
 
