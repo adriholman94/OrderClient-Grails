@@ -2,12 +2,14 @@ import com.fuini.sd.web.rest.Category.CategoryResourceImpl
 import com.fuini.sd.web.rest.Product.ProductResourceImpl
 import com.fuini.sd.web.rest.PurchaseRecord.PurchaseRecordResourceImpl
 import com.fuini.sd.web.rest.Role.RoleResourceImpl
+import com.fuini.sd.web.rest.User.UserResourceImpl
 import com.fuini.sd.web.service.Category.CategoryServiceImpl
 import com.fuini.sd.web.rest.Supplier.SupplierResourceImpl
 import com.fuini.sd.web.service.Product.ProductServiceImpl
 import com.fuini.sd.web.service.PurchaseRecord.PurchaseRecordServiceImpl
 import com.fuini.sd.web.service.Supplier.SupplierServiceImpl
 import com.fuini.sd.web.service.Role.RoleServiceImpl
+import com.fuini.sd.web.service.User.UserServiceImpl
 
 // Place your Spring DSL code here
 beans = {
@@ -17,6 +19,7 @@ beans = {
     productResource(ProductResourceImpl)
     purchaseRecordResource(PurchaseRecordResourceImpl)
     roleResource(RoleResourceImpl)
+    userResource(UserResourceImpl)
 
     //Services
     categoryService(CategoryServiceImpl)
@@ -25,4 +28,5 @@ beans = {
     _categoryService(CategoryServiceImpl)
     purchaseRecordService(PurchaseRecordServiceImpl)
     roleService(RoleServiceImpl)
+    userService(UserServiceImpl)
 }
