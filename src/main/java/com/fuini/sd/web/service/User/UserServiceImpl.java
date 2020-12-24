@@ -32,8 +32,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         params.put("email", dto.getUserMail());
         params.put("password", dto.getUserPassword());
         UserB newUser = new UserB(params);
-        List<RoleB> roles = new ArrayList<>();
-        dto.getRoles().forEach(role -> roles.add(new RoleServiceImpl().toBean(role)));
+        //List<RoleB> roles = new ArrayList<>();
+        //dto.getRoles().forEach(role -> roles.add(new RoleServiceImpl().toBean(role)));
+        //newUser.setRole(roles);
         return newUser;
     }
 
@@ -44,8 +45,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         DTO.setUserName(bean.getUserName());
         DTO.setUserMail(bean.getUserMail());
         DTO.setUserPassword(bean.getUserPassword());
-        List<RoleDTO> roles = new ArrayList<>();
-        bean.getRole().forEach(role -> roles.add(new RoleServiceImpl().toDTO(role)));
+        //List<RoleDTO> roles = new ArrayList<>();
+        //bean.getRole().forEach(role -> roles.add(new RoleServiceImpl().toDTO(role)));
+        //DTO.setRoles(roles);
         return DTO;
     }
 

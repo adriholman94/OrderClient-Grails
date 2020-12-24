@@ -35,7 +35,6 @@
         <tr>
             <g:sortableColumn property="userName" title="User Name"/>
              <g:sortableColumn property="email" title="email"/>
-
         </tr>
         </thead>
         <tbody>
@@ -43,8 +42,8 @@
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                 <td><g:link action="show" id="${userInstance.id}">
                     ${fieldValue(bean: userInstance, field: "userName")}
-                        ${fieldValue(bean: userInstance, field: "email")}
                 </g:link></td>
+                <td>${fieldValue(bean: userInstance, field: "email")}</td>
             </tr>
         </g:each>
         </tbody>
