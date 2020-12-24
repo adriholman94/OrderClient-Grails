@@ -3,6 +3,7 @@ package com.fuini.sd.web.beans.User;
 import com.fuini.sd.web.beans.Base.BaseBean;
 import com.fuini.sd.web.beans.Role.RoleB;
 
+import java.util.List;
 import java.util.Map;
 
 public class UserB extends BaseBean {
@@ -10,9 +11,7 @@ public class UserB extends BaseBean {
     private String userName;
     private String email;
     private String password;
-
-
-    private RoleB role;
+    private List<RoleB> role;
 
     public UserB(Map<String, String> params) {
         super(params);
@@ -25,6 +24,7 @@ public class UserB extends BaseBean {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public String getUserMail() {
         return email;
     }
@@ -32,6 +32,7 @@ public class UserB extends BaseBean {
     public String getUserPassword() {
         return password;
     }
+
     public void setUserMail(String email) {
         this.email = email;
     }
@@ -40,11 +41,11 @@ public class UserB extends BaseBean {
         this.password = password;
     }
 
-    public RoleB getRole() {
+    public List<RoleB> getRole() {
         return role;
     }
 
-    public void setRole(RoleB role) {
+    public void setRole(List<RoleB> role) {
         this.role = role;
     }
 
@@ -56,6 +57,5 @@ public class UserB extends BaseBean {
         setUserName(params.get("userName"));
         setUserMail(params.get("email"));
         setUserPassword(params.get("password"));
-
     }
 }

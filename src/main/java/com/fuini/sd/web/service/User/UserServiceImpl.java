@@ -1,10 +1,13 @@
 package com.fuini.sd.web.service.User;
 
+import com.fiuni.sd.DTO.Role.RoleDTO;
 import com.fiuni.sd.DTO.User.UserDTO;
 import com.fiuni.sd.DTO.User.UserResult;
+import com.fuini.sd.web.beans.Role.RoleB;
 import com.fuini.sd.web.beans.User.UserB;
 import com.fuini.sd.web.rest.User.IUserResource;
 import com.fuini.sd.web.service.Base.BaseServiceImpl;
+import com.fuini.sd.web.service.Role.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +31,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         params.put("userName", dto.getUserName());
         params.put("email", dto.getUserMail());
         params.put("password", dto.getUserPassword());
-        return new UserB(params);
+        UserB newUser = new UserB(params);
+        List<RoleB> roles = new ArrayList<>();
+        dto.getRoles().forEach(role -> roles.add(new RoleServiceImpl().toBean(role)));
+        return newUser;
     }
 
     @Override
@@ -38,6 +44,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         DTO.setUserName(bean.getUserName());
         DTO.setUserMail(bean.getUserMail());
         DTO.setUserPassword(bean.getUserPassword());
+        List<RoleDTO> roles = new ArrayList<>();
+        bean.getRole().forEach(role -> roles.add(new RoleServiceImpl().toDTO(role)));
         return DTO;
     }
 
