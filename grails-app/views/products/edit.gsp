@@ -17,6 +17,13 @@
         <li><g:link class="create" action="create"><g:message code="default.new.label"
                                                               args="[entityName]"/></g:link></li>
     </ul>
+    <sec:ifNotLoggedIn>
+        <a href="/login" class="">Login</a>
+    </sec:ifNotLoggedIn>
+    <sec:ifLoggedIn>
+        <a>Hello, ${sec.username()}</a>
+        <a href="/logout" class="">Logout</a>
+    </sec:ifLoggedIn>
 </div>
 
 <div id="edit-products" class="content scaffold-edit" role="main">
