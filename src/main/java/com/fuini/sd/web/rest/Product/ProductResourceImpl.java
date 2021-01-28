@@ -15,12 +15,14 @@ public class ProductResourceImpl extends BaseResourceImpl<ProductDTO> implements
 
     @Override
     public ProductResult getAll(Integer page) {
+        setWebResourceBasicAuthFilter();
         System.out.println("page -> " + getWebResource().path("/page/" + page).toString());
         return getWebResource().path("/page/" + page).get(ProductResult.class);
     }
 
     @Override
     public ProductDTO update(ProductDTO productDTO) {
+        setWebResourceBasicAuthFilter();
         System.out.println("update -> " + getWebResource().path("/" + productDTO.getId()).toString());
         ProductDTO updateDTO = getWebResource().path("/" + productDTO.getId()).entity(productDTO).put(getDTOClass());
         return updateDTO;
@@ -28,6 +30,7 @@ public class ProductResourceImpl extends BaseResourceImpl<ProductDTO> implements
 
     @Override
     public ProductDTO delete(Integer id) {
+        setWebResourceBasicAuthFilter();
         System.out.println("delete -> " + getWebResource().path("/" + id).toString());
         ProductDTO DTO = getWebResource().path("/" + id).delete(getDTOClass());
         return DTO;
@@ -35,6 +38,7 @@ public class ProductResourceImpl extends BaseResourceImpl<ProductDTO> implements
 
     @Override
     public ProductResult getProducts() {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/all").toString());
         return getWebResource().path("/all").get(ProductResult.class);
     }

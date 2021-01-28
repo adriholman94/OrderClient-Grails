@@ -2,6 +2,7 @@ package orderclient.grails
 
 import com.fuini.sd.web.beans.Category.CategoryB
 import com.fuini.sd.web.service.Category.ICategoryService
+import grails.plugin.springsecurity.annotation.Secured
 
 class CategoriesController {
 
@@ -9,10 +10,16 @@ class CategoriesController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def index() {
         redirect(action: "list", params: params)
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def list(){
         System.out.println("params -> " + params)
         def page = null == params['id'] ? 0 : Integer.valueOf(params['id'])
@@ -21,17 +28,26 @@ class CategoriesController {
         [categoryInstanceL: categories, categoryInstanceT: categories?.size(), page: page, next: next]
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def show(Integer id) {
         System.out.println("params -> " + params)
         def categoryInstance = categoryService.getById(id)
         [categoryInstance: categoryInstance]
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def create() {
         System.out.println("params -> " + params)
         [categoryInstance: new Categories(params)]
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def save() {
         System.out.println("params -> " + params)
         def categoryInstance = new CategoryB(params)
@@ -44,6 +60,9 @@ class CategoriesController {
         redirect(action: "show", id: newCategoryInstance.getId())
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def edit(Integer id) {
         def categoryInstance = categoryService.getById(id.intValue())
         if (!categoryInstance) {
@@ -54,6 +73,9 @@ class CategoriesController {
         [categoryInstance: categoryInstance]
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def update() {
         System.out.println("params -> " + params)
         def newCategoryInstance = new CategoryB(params)
@@ -64,6 +86,9 @@ class CategoriesController {
         redirect(action: "show", id: newCategoryInstance.getId())
     }
 
+    @Secured([
+            'ROLE_ADMIN'
+    ])
     def delete(Integer id) {
         System.out.println("params -> " + params)
         def categoryInstance = categoryService.delete(id)

@@ -32,9 +32,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         params.put("email", dto.getUserMail());
         params.put("password", dto.getUserPassword());
         UserB newUser = new UserB(params);
-        //List<RoleB> roles = new ArrayList<>();
-        //dto.getRoles().forEach(role -> roles.add(new RoleServiceImpl().toBean(role)));
-        //newUser.setRole(roles);
+        List<RoleB> roles = new ArrayList<>();
+        dto.getRoles().forEach(role -> roles.add(new RoleServiceImpl().toBean(role)));
+        newUser.setRole(roles);
         return newUser;
     }
 
@@ -45,9 +45,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         DTO.setUserName(bean.getUserName());
         DTO.setUserMail(bean.getUserMail());
         DTO.setUserPassword(bean.getUserPassword());
-        //List<RoleDTO> roles = new ArrayList<>();
-        //bean.getRole().forEach(role -> roles.add(new RoleServiceImpl().toDTO(role)));
-        //DTO.setRoles(roles);
+        List<RoleDTO> roles = new ArrayList<>();
+        bean.getRole().forEach(role -> roles.add(new RoleServiceImpl().toDTO(role)));
+        DTO.setRoles(roles);
         return DTO;
     }
 
@@ -94,7 +94,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
         return dto.getId() == null ? null : convertDtoToBean(dto);
     }
 
-    public UserB toBean(UserDTO userDTO){
+    public UserB toBean(UserDTO userDTO) {
         return convertDtoToBean(userDTO);
     }
 
@@ -112,5 +112,15 @@ public class UserServiceImpl extends BaseServiceImpl<UserB, UserDTO> implements 
             users.add(convertDtoToBean(dto));
         }
         return users;
+    }
+
+    @Override
+    public UserB getByUserName(String userName) {
+        final UserDTO dto = userResource.getByUserName(userName);
+        UserB userB = null;
+        if (dto.getId() != null) {
+            userB = convertDtoToBean(dto);
+        }
+        return userB;
     }
 }

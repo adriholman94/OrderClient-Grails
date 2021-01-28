@@ -17,12 +17,14 @@ public class SupplierResourceImpl extends BaseResourceImpl<SupplierDTO> implemen
 
     @Override
     public SupplierResult getAll(Integer page) {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/page/" + page).toString());
         return getWebResource().path("/page/" + page).get(SupplierResult.class);
     }
 
     @Override
     public SupplierDTO update(SupplierDTO supplierDTO) {
+        setWebResourceBasicAuthFilter();
         System.out.println("update -> " + getWebResource().path("/" + supplierDTO.getId()).toString());
         SupplierDTO updateDTO = getWebResource().path("/" + supplierDTO.getId()).entity(supplierDTO).put(getDTOClass());
         return updateDTO;
@@ -30,6 +32,7 @@ public class SupplierResourceImpl extends BaseResourceImpl<SupplierDTO> implemen
 
     @Override
     public SupplierDTO delete(Integer id) {
+        setWebResourceBasicAuthFilter();
         System.out.println("delete -> " + getWebResource().path("/" + id).toString());
         SupplierDTO DTO = getWebResource().path("/" + id).delete(getDTOClass());
         return DTO;
@@ -37,6 +40,7 @@ public class SupplierResourceImpl extends BaseResourceImpl<SupplierDTO> implemen
 
     @Override
     public SupplierResult getSuppliers() {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/all").toString());
         return getWebResource().path("/all").get(SupplierResult.class);
     }

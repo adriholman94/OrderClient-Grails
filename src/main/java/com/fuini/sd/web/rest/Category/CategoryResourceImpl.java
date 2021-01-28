@@ -15,12 +15,14 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
 
     @Override
     public CategoryResult getAll(Integer page) {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/page/" + page).toString());
         return getWebResource().path("/page/" + page).get(CategoryResult.class);
     }
 
     @Override
     public CategoryDTO update(CategoryDTO categoryDTO) {
+        setWebResourceBasicAuthFilter();
         System.out.println("update -> " + getWebResource().path("/" + categoryDTO.getId()).toString());
         CategoryDTO updateDTO = getWebResource().path("/" + categoryDTO.getId()).entity(categoryDTO).put(getDTOClass());
         return updateDTO;
@@ -28,6 +30,7 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
 
     @Override
     public CategoryDTO delete(Integer id) {
+        setWebResourceBasicAuthFilter();
         System.out.println("delete -> " + getWebResource().path("/" + id).toString());
         CategoryDTO DTO = getWebResource().path("/" + id).delete(getDTOClass());
         return DTO;
@@ -35,6 +38,7 @@ public class CategoryResourceImpl extends BaseResourceImpl<CategoryDTO> implemen
 
     @Override
     public CategoryResult getCategories() {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/all").toString());
         return getWebResource().path("/all").get(CategoryResult.class);
     }

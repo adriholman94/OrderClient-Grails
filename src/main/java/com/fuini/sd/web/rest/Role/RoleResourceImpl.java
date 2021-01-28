@@ -14,12 +14,14 @@ public class RoleResourceImpl extends BaseResourceImpl<RoleDTO> implements IRole
 
     @Override
     public RoleResult getAll(Integer page) {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/page/" + page).toString());
         return getWebResource().path("/page/" + page).get(RoleResult.class);
     }
 
     @Override
     public RoleDTO update(RoleDTO roleDTO) {
+        setWebResourceBasicAuthFilter();
         System.out.println("update -> " + getWebResource().path("/" + roleDTO.getId()).toString());
         RoleDTO updateDTO = getWebResource().path("/" + roleDTO.getId()).entity(roleDTO).put(getDTOClass());
         return updateDTO;
@@ -27,6 +29,7 @@ public class RoleResourceImpl extends BaseResourceImpl<RoleDTO> implements IRole
 
     @Override
     public RoleDTO delete(Integer id) {
+        setWebResourceBasicAuthFilter();
         System.out.println("delete -> " + getWebResource().path("/" + id).toString());
         RoleDTO DTO = getWebResource().path("/" + id).delete(getDTOClass());
         return DTO;
@@ -34,6 +37,7 @@ public class RoleResourceImpl extends BaseResourceImpl<RoleDTO> implements IRole
 
     @Override
     public RoleResult getRoles() {
+        setWebResourceBasicAuthFilter();
         System.out.println("all -> " + getWebResource().path("/all").toString());
         return getWebResource().path("/all").get(RoleResult.class);
     }

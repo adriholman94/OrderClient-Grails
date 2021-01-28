@@ -13,4 +13,6 @@ public interface IUserResource extends IBaseResource<UserDTO> {
     UserDTO delete(Integer id);
 
     UserResult getUsers();
+
+    UserDTO getByUserName(String userName);
 }

@@ -19,4 +19,6 @@ public interface IUserService extends IBaseService<UserB, UserDTO> {
     UserDTO toDTO(UserB user);
 
     List<UserB> getUsers();
+
+    UserB getByUserName(String userName);
 }
