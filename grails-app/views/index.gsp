@@ -7,11 +7,11 @@
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
     <div class="nav" role="navigation">
         <sec:ifNotLoggedIn>
-            <a href="/login" class="">Login</a>
+            <g:link controller='login' action='auth'>Login</g:link>
         </sec:ifNotLoggedIn>
         <sec:ifLoggedIn>
             <a>Hello, ${sec.username()}</a>
-            <a href="/logout" class="">Logout</a>
+            <g:link elementId='logout' controller='logout'>Logout</g:link>
         </sec:ifLoggedIn>
     </div>
     </head>
@@ -26,13 +26,13 @@
             <div class="list-group">
 
                 <sec:ifAnyGranted roles='ROLE_ADMIN'>
-                    <a href="/categories" class="list-group-item list-group-item-action">Categories</a>
+                    <a href="./categories" class="list-group-item list-group-item-action">Categories</a>
                 </sec:ifAnyGranted>
                 <sec:ifAnyGranted roles='ROLE_CLIENT'>
 
                 </sec:ifAnyGranted>
                 <sec:ifAnyGranted roles='ROLE_ADMIN, ROLE_CLIENT'>
-                    <a href="/products" class="list-group-item list-group-item-action">Products</a>
+                    <a href="./products" class="list-group-item list-group-item-action">Products</a>
                 </sec:ifAnyGranted>
             </div>
         </div>

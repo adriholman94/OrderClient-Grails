@@ -13,7 +13,7 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
     private final Class<DTO> dtoClass;
     private WebResource webResource;
     private Client jerseyClient;
-    private static final String BASE_URL = "http://localhost:8080/order-api/";
+    private static final String BASE_URL = "http://localhost:8082/OrderManagementSystem/";
 
     @Autowired
     private IAuthService authService;
